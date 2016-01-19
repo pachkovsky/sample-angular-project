@@ -1,0 +1,6 @@
+Toptal.config ["$routeProvider", ($routeProvider) ->
+  $routeProvider.when("/",
+    templateUrl: "<%= asset_path('assets/angular-app/templates/entries/index.html') %>"
+    controller: "EntriesIndexController"
+  )
+]

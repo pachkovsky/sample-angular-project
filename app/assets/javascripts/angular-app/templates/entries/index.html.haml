@@ -1,0 +1,18 @@
+%h1.page-header
+  .pull-right
+    %a{href: '#', class: 'btn btn-default'} Add entry
+  Entries
+.panel.panel-default
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Date
+        %th Time
+        %th Note
+        %th Actions
+    %tbody
+      %tr{'ng-repeat' => 'entry in entries'}
+        %td {{ entry.date | date }}
+        %td {{ entry.hours | number:2  }} hours
+        %td {{ entry.note }}
+        %td

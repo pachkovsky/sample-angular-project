@@ -1,0 +1,14 @@
+.row
+  .col-sm-4.col-sm-offset-3
+    .panel.panel-default
+      .panel-heading Sign in
+      .panel-body
+        .alert.alert-danger{'ng-show' => 'auth_error'} Email or password is invalid
+        %form{name: "new_session_form", novalidate: true}
+          .form-group
+            %label{name: 'email'} Email
+            %input{type: 'text', name: 'email', 'ng-model': 'session.email', class: 'form-control', 'ng-required' => 'true'}
+          .form-group
+            %label{name: 'password'} Password
+            %input{type: 'password', name: 'password', 'ng-model': 'session.password', class: 'form-control', 'ng-required' => 'true'}
+          %input{type: 'submit', value: 'Sign in', class: 'btn btn-primary', 'ng-click' => 'sign_in()'}

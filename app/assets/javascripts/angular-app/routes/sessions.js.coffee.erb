@@ -1,0 +1,6 @@
+Toptal.config ["$routeProvider", ($routeProvider) ->
+  $routeProvider.when("/sessions/new",
+    templateUrl: "<%= asset_path('assets/angular-app/templates/sessions/new.html') %>"
+    controller: "SessionsNewController"
+  )
+]
