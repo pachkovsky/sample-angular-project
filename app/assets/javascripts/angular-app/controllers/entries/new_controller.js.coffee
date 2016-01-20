@@ -3,13 +3,14 @@ Toptal.controller 'EntriesNewController', ['$scope', '$location', 'Entry', 'User
 
   $scope.loadUsers = ->
     User.query (data) ->
-      $scope.users = (data)
+      $scope.users = data
+      if $scope.current_user.role == 'manager'
+        $scope.users.unshift($scope.current_user)
 
   $scope.save = ->
     Entry.save entry: $scope.entry, (data) ->
       $location.path('/')
     , (response) ->
-      console.log response.data
       $scope.errors = response.data.errors
 
   $scope.loadUsers()

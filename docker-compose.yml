@@ -1,0 +1,12 @@
+rails:
+  build: .
+  container_name: toptal_rails
+  ports:
+    - "8081:80"
+  links:
+    - mongo
+  command: bin/start.sh
+  env_file: .env
+mongo:
+  image: mongo:3.2
+  container_name: toptal_mongo

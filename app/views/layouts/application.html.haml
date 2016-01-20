@@ -8,12 +8,14 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body{'ng-app' => 'Toptal', 'ng-controller' => 'ApplicationController'}
-    %header.nav.navbar.navbar-fixed-top.navbar-default
+    %header.nav.navbar.navbar-fixed-top.navbar-default{'ng-show' => 'current_user.id'}
       .container
         .navbar-header
           = link_to Toptal, '/#/', class: 'navbar-brand'
         %nav
           %ul.nav.navbar-nav.navbar-right{'ng-show' => 'current_user'}
+            %li{'ng-show' => "current_user.role && current_user.role != 'regular'"}
+              %a{href: '/#/users'} Users
             %li.dropdown
               = link_to '', class: 'dropdown-toggle', 'data-toggle': 'dropdown' do
                 {{current_user.email}}

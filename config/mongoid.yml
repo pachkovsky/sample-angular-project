@@ -135,3 +135,9 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+production:
+  clients:
+    default:
+      database: toptal_production
+      hosts:
+        - mongo:27017

@@ -1,28 +1,14 @@
-== README
+# Setup
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```bash
+docker-compose up
+docker exec toptal_rails rake db:reset
+```
 
-Things you may want to cover:
+Navigate to localhost:8081
 
-* Ruby version
+# Initial credentials
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+admin@toptal.com:foobar
+manager@toptal.com:foobar
+user@toptal.com:foobar

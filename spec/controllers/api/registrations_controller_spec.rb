@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe Api::RegistrationsController, type: :controller do
   context '.create' do
     it 'returns :created status' do
-      post :create, user: attributes_for(:user)
+      post :create, registration: attributes_for(:user)
       expect(response).to have_http_status(:created)
     end
 
     it 'creates a User' do
       expect do
-        post :create, user: attributes_for(:user)
+        post :create, registration: attributes_for(:user)
       end.to change(User, :count).by(1)
     end
 

@@ -5,9 +5,10 @@ Toptal.controller 'EntriesEditController', ['$scope', '$location', '$routeParams
       $scope.entry = data
     User.query (data) ->
       $scope.users = (data)
+      if $scope.current_user.role == 'manager'
+        $scope.users.unshift($scope.current_user)
 
   $scope.save = ->
-    console.log($scope.entry)
     Entry.update {id: $scope.entry.id}, {entry: $scope.entry}, (data) ->
       $location.path('/')
     , (response) ->

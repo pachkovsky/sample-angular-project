@@ -50,3 +50,5 @@ gem 'devise'
 gem 'database_cleaner'
 gem 'enumerize'
 gem 'haml'
+
+gem 'puma'

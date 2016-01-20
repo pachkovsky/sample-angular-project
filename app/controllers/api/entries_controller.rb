@@ -13,6 +13,10 @@ class Api::EntriesController < Api::BaseController
   def create
     entry = entries_scope.new(entry_params)
 
+    if current_user.manager? && entry.user && ![current_user, *current_user.managed_users].include?(entry.user)
+      return render json: nil, status: :forbidden
+    end
+
     if entry.save
       render json: entry, status: :created
     else
@@ -23,7 +27,13 @@ class Api::EntriesController < Api::BaseController
   def update
     entry = entries_scope.find(params.require(:id))
 
-    if entry.update_attributes(entry_params)
+    entry.assign_attributes(entry_params)
+
+    if current_user.manager? && entry.user && ![current_user, *current_user.managed_users].include?(entry.user)
+      return render json: nil, status: :forbidden
+    end
+
+    if entry.save
       render json: entry
     else
       render json: {errors: entry.errors}, status: :unprocessable_entity
@@ -41,7 +51,7 @@ class Api::EntriesController < Api::BaseController
     if current_user.admin?
       Entry.all
     elsif current_user.manager?
-      Entry.in(user_id: [current_user.id, *current_user.managed_user_ids])
+      Entry.and(:user_id.in => [current_user.id, *current_user.managed_user_ids])
     else
       current_user.entries.all
     end

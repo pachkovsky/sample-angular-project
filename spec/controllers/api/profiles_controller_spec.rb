@@ -9,24 +9,24 @@ RSpec.describe Api::ProfilesController, type: :controller do
 
   context '.show' do
     it 'returns :ok status' do
-      get :show
+      get :show, format: :json
       expect(response).to have_http_status(:ok)
     end
   end
 
   context '.update' do
     it 'returns :ok status' do
-      put :update, profile: {preferred_working_hours_per_day: 6.5}
+      put :update, profile: {preferred_working_hours_per_day: 6.5}, format: :json
       expect(response).to have_http_status(:ok)
     end
 
     it 'returns :unprocessable_entity status' do
-      put :update, profile: {preferred_working_hours_per_day: -1}
+      put :update, profile: {preferred_working_hours_per_day: -1}, format: :json
       expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it 'has errors type of hash' do
-      put :update, profile: {preferred_working_hours_per_day: -1}
+      put :update, profile: {preferred_working_hours_per_day: -1}, format: :json
       expect(json_response_body['errors']).to be_instance_of(Hash)
     end
   end

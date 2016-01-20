@@ -11,6 +11,7 @@ Toptal.factory 'AuthInterceptor', ['$q', '$location', ($q, $location) ->
   responseError: (response) ->
     if response.status == 401
       localStorage.removeItem('token')
+      localStorage.removeItem('current_user')
       $location.path('/sessions/new')
     $q.reject(response)
 ]

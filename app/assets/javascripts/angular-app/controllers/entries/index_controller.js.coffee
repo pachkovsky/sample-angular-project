@@ -1,4 +1,4 @@
-Toptal.controller 'EntriesIndexController', ['$scope', '$location', '$http', 'Entry', ($scope, $location, $http, Entry) ->
+Toptal.controller 'EntriesIndexController', ['$scope', '$location', 'Entry', ($scope, $location, Entry) ->
   $scope.days = {}
   $scope.filter_form = {}
 
@@ -24,10 +24,6 @@ Toptal.controller 'EntriesIndexController', ['$scope', '$location', '$http', 'En
     Entry.query $scope.filter_form, (data) ->
       $scope.entries = data
       calculateWorkingHours()
-
-  $scope.export = ->
-    $http.get('/api/exports.html').then (response) ->
-      console.log(response.data)
 
   $scope.load()
 ]

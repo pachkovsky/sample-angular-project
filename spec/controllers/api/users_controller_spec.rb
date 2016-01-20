@@ -100,12 +100,6 @@ RSpec.describe Api::UsersController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'returns :not_found for manager without access' do
-      stub_current_user(manager)
-       put :update, id: create(:user).id, user: {email: 'new@example.com'}, format: :json
-      expect(response).to have_http_status(:not_found)
-    end
-
     it 'returns :ok for admin' do
       stub_current_user(admin)
       put :update, id: regular_user.id, user: {email: 'new@example.com'}, format: :json

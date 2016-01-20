@@ -12,6 +12,6 @@ class Api::RegistrationsController < Api::BaseController
 
   private
   def user_params
-    params.fetch(:user, {}).permit(:email, :password, :password_confirmation)
+    params.fetch(:registration, {}).permit(:email, :password, :password_confirmation)
   end
 end

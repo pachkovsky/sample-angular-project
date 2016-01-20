@@ -1,0 +1,6 @@
+Toptal.config ["$routeProvider", ($routeProvider) ->
+  $routeProvider.when("/registrations/new",
+    templateUrl: "<%= asset_path('angular-app/templates/registrations/new.html') %>"
+    controller: "RegistrationsNewController"
+  )
+]

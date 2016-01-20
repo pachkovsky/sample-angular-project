@@ -13,6 +13,10 @@ class Api::UsersController < Api::BaseController
     @user = users_scope.new(user_params)
 
     if @user.save
+      if current_user.manager?
+        current_user.managed_users << @user
+        current_user.save
+      end
       render :show, status: :created
     else
       render :show, status: :unprocessable_entity
@@ -40,15 +44,15 @@ class Api::UsersController < Api::BaseController
     if current_user.admin?
       User.all
     elsif current_user.manager?
-      User.in(_id: [current_user.id, *current_user.managed_user_ids])
+      User.and(:id.in => current_user.managed_user_ids)
     end
   end
 
   def user_params
     if current_user.admin?
-      params.fetch(:user, {}).permit(:email, :password, :password_confirmation, :managed_user_ids)
+      params.fetch(:user, {}).permit(:email, :password, :role, :password_confirmation, :managed_user_ids, :preferred_working_hours_per_day)
     elsif current_user.manager?
-      params.fetch(:user, {}).permit(:email, :password, :password_confirmation)
+      params.fetch(:user, {}).permit(:email, :password, :password_confirmation, :preferred_working_hours_per_day)
     end
   end
 

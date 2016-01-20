@@ -1,9 +1,9 @@
 Toptal.config ["$routeProvider", ($routeProvider) ->
   $routeProvider.when("/entries/new",
-    templateUrl: "<%= asset_path('assets/angular-app/templates/entries/new.html') %>"
+    templateUrl: "<%= asset_path('angular-app/templates/entries/new.html') %>"
     controller: "EntriesNewController"
   ).when("/entries/:id/edit",
-    templateUrl: "<%= asset_path('assets/angular-app/templates/entries/edit.html') %>"
+    templateUrl: "<%= asset_path('angular-app/templates/entries/edit.html') %>"
     controller: "EntriesEditController"
   )
 ]

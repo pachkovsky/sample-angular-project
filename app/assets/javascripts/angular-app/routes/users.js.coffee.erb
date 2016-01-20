@@ -1,0 +1,12 @@
+Toptal.config ["$routeProvider", ($routeProvider) ->
+  $routeProvider.when("/users",
+    templateUrl: "<%= asset_path('angular-app/templates/users/index.html') %>"
+    controller: "UsersIndexController"
+  ).when("/users/new",
+    templateUrl: "<%= asset_path('angular-app/templates/users/new.html') %>"
+    controller: "UsersNewController"
+  ).when("/users/:id/edit",
+    templateUrl: "<%= asset_path('angular-app/templates/users/edit.html') %>"
+    controller: "UsersEditController"
+  )
+]

@@ -16,21 +16,21 @@ RSpec.describe Api::EntriesController, type: :controller do
   context '.index' do
     it 'returns user entries' do
       5.times { create(:entry, user: session.user) }
-      get :index
+      get :index, format: :json
       expect(json_response_body.count).to be == 5
     end
 
     it 'returns only user entries' do
       create(:entry)
       5.times { create(:entry, user: session.user) }
-      get :index
+      get :index, format: :json
       expect(json_response_body.count).to be == 5
     end
 
     it 'returns all user entries' do
       5.times { create(:entry) }
       stub_admin
-      get :index
+      get :index, format: :json
       expect(json_response_body.count).to be == 5
     end
   end
