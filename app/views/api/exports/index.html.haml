@@ -1,15 +1,30 @@
 %ul
-  - @entries.each do |date, entries|
+  - @entries.each do |date, users|
     %li
       Date:
       = date
-      %ul
-        %li
-          Total time:
-          = entries.sum(&:hours)
-        %li
-          Notes:
-          %ul
-            - entries.each do |entry|
-              %li= entry.note
+      - users.each do |user, entries|
+        %ul
+          - unless current_user.regular?
+            %li
+              User:
+              = entries.first.user.email
+              %ul
+                %li
+                  Total time:
+                  = entries.sum(&:hours)
+                %li
+                  Notes:
+                  %ul
+                    - entries.each do |entry|
+                      %li= entry.note
+          - else
+            %li
+              Total time:
+              = entries.sum(&:hours)
+            %li
+              Notes:
+              %ul
+                - entries.each do |entry|
+                  %li= entry.note
 

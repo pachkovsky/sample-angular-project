@@ -2,6 +2,10 @@
 .row
   .col-sm-5
     %form{name: "edit_entry_form", novalidate: true, 'ng-submit' => 'save()'}
+      .form-group{'ng-class' => "{'has-error': errors.user_id}", 'ng-show': "current_user.role != 'regular'"}
+        %label{name: 'user_id', class: 'control-label'} User
+        %select{name: 'user_id', 'ng-model': 'entry.user_id', class: 'form-control', 'ng-required' => 'true', 'ng-options' => 'user.id as user.email for user in users'}
+        .help-block.text-danger{'ng-show' => 'errors.user_id'} {{ errors.user_id.join(', ') }}
       .form-group{'ng-class' => "{'has-error': errors.date}"}
         %label{name: 'date', class: 'control-label'} Date
         %input{type: 'date', name: 'date', 'ng-model': 'entry.date', class: 'form-control', 'ng-required' => 'true'}

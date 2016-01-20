@@ -14,17 +14,19 @@
   %table.table.table-hover{'ng-show' => 'entries.length > 0'}
     %thead
       %tr
+        %th{'ng-show' => "current_user.role != 'regular'"} User
         %th Date
         %th Time
         %th Note
         %th
     %tbody
       %tr{'ng-repeat' => 'entry in entries', 'ng-controller' => 'EntriesShowController', 'ng-class' => "{'text-success': entry.completed, 'text-danger': entry.completed == false}"}
+        %td{'ng-show' => "current_user.role != 'regular'"} {{ entry.user.email}}
         %td {{ entry.date | date }}
         %td {{ entry.hours | number:2  }} hours
         %td {{ entry.note }}
         %td.text-right
-          %a{'ng-href': "/#/entries/{{entry._id}}/edit", class: 'btn-icon'}
+          %a{'ng-href': "/#/entries/{{entry.id}}/edit", class: 'btn-icon'}
             %span.glyphicon.glyphicon-pencil
-          %a{href: '', 'ng-click': "destroy('{{entry._id}}')", class: 'btn-icon'}
+          %a{href: '', 'ng-click': "destroy('{{entry.id}}')", class: 'btn-icon'}
             %span.glyphicon.glyphicon-trash

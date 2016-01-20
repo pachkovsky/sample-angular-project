@@ -11,10 +11,10 @@ Toptal.controller 'EntriesIndexController', ['$scope', '$location', '$http', 'En
   calculateWorkingHours = ->
     $scope.days = {}
     $scope.entries.forEach (entry) ->
-      $scope.days[entry.date] ||= 0
-      $scope.days[entry.date] += entry.hours
+      $scope.days[entry.user_id + '_' + entry.date] ||= 0
+      $scope.days[entry.user_id + '_' + entry.date] += entry.hours
     $scope.entries.forEach (entry) ->
-      entry.completed = $scope.days[entry.date] >= $scope.current_user.preferred_working_hours_per_day
+      entry.completed = $scope.days[entry.user_id + '_' + entry.date] >= entry.user.preferred_working_hours_per_day
 
   $scope.filter_entries = ->
     $location.search(from: $scope.filter_form.from, to: $scope.filter_form.to)
@@ -23,8 +23,7 @@ Toptal.controller 'EntriesIndexController', ['$scope', '$location', '$http', 'En
     initFilterForm()
     Entry.query $scope.filter_form, (data) ->
       $scope.entries = data
-      if $scope.current_user.preferred_working_hours_per_day > 0
-        calculateWorkingHours()
+      calculateWorkingHours()
 
   $scope.export = ->
     $http.get('/api/exports.html').then (response) ->

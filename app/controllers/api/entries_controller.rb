@@ -3,11 +3,11 @@ class Api::EntriesController < Api::BaseController
     scope = entries_scope
     scope = scope.gte(date: params[:from]) if params[:from].present?
     scope = scope.lte(date: params[:to]) if params[:to].present?
-    render json: scope.order(:date.desc)
+    @entries = scope.order(:date.desc).includes(:user)
   end
 
   def show
-    render json: entries_scope.find(params.require(:id))
+    @entry = entries_scope.find(params.require(:id))
   end
 
   def create
@@ -41,7 +41,7 @@ class Api::EntriesController < Api::BaseController
     if current_user.admin?
       Entry.all
     elsif current_user.manager?
-      Entry.where(user_id: current_user.managed_user_ids)
+      Entry.in(user_id: [current_user.id, *current_user.managed_user_ids])
     else
       current_user.entries.all
     end

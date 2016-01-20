@@ -40,13 +40,13 @@ class Api::UsersController < Api::BaseController
     if current_user.admin?
       User.all
     elsif current_user.manager?
-      current_user.managed_users
+      User.in(_id: [current_user.id, *current_user.managed_user_ids])
     end
   end
 
   def user_params
     if current_user.admin?
-      params.fetch(:user, {}).permit(:email, :password, :password_confirmation, :managed_users_ids)
+      params.fetch(:user, {}).permit(:email, :password, :password_confirmation, :managed_user_ids)
     elsif current_user.manager?
       params.fetch(:user, {}).permit(:email, :password, :password_confirmation)
     end

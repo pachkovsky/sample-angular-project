@@ -1,5 +1,9 @@
-Toptal.controller 'EntriesNewController', ['$scope', '$location', 'Entry', ($scope, $location, Entry) ->
-  $scope.entry = {}
+Toptal.controller 'EntriesNewController', ['$scope', '$location', 'Entry', 'User', ($scope, $location, Entry, User) ->
+  $scope.entry = {user_id: $scope.current_user.id}
+
+  $scope.loadUsers = ->
+    User.query (data) ->
+      $scope.users = (data)
 
   $scope.save = ->
     Entry.save entry: $scope.entry, (data) ->
@@ -7,4 +11,6 @@ Toptal.controller 'EntriesNewController', ['$scope', '$location', 'Entry', ($sco
     , (response) ->
       console.log response.data
       $scope.errors = response.data.errors
+
+  $scope.loadUsers()
 ]
