@@ -1,0 +1,15 @@
+%ul
+  - @entries.each do |date, entries|
+    %li
+      Date:
+      = date
+      %ul
+        %li
+          Total time:
+          = entries.sum(&:hours)
+        %li
+          Notes:
+          %ul
+            - entries.each do |entry|
+              %li= entry.note
+

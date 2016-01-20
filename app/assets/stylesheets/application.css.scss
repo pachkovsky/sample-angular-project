@@ -2,9 +2,28 @@
 @import 'bootstrap';
 
 body {
-  padding-top: 70px;
+  padding-top: 40px;
 }
 
 .page-header .pull-right .btn {
   vertical-align: top;
+}
+
+.panel > .panel-body.ng-hide + .table {
+  border-top: none;
+}
+
+a.btn-icon {
+  color: #bbb;
+  &:hover, &:active {
+    text-decoration: none;
+    color: #000;
+  }
+  + a.btn-icon {
+    margin-left: 2px;
+  }
+}
+
+.form-inline + .panel {
+  margin-top: 20px;
 }

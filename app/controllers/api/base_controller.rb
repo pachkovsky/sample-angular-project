@@ -9,7 +9,7 @@ class Api::BaseController < ApplicationController
   end
   helper_method :current_user
 
-  private
+  protected
   def authenticate_user!
     unless current_user
       render json: nil, status: :unauthorized

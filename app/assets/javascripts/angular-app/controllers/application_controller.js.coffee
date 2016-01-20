@@ -1,6 +1,7 @@
 Toptal.controller 'ApplicationController', ['$scope', '$location', 'Profile', 'Session', ($scope, $location, Profile, Session) ->
   $scope.loadProfile = () ->
     Profile.get (data) ->
+      $scope.token = localStorage.getItem('token')
       $scope.current_user = data
 
   $scope.sign_out = () ->

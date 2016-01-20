@@ -1,18 +1,30 @@
+
 %h1.page-header
   .pull-right
-    %a{href: '#', class: 'btn btn-default'} Add entry
+    %a{href: "/api/exports?token={{token}}&from={{filter_form.from}}&to={{filter_form.to}}", class: 'btn btn-default', target: '_blank'} Export to HTML
+    %a{href: '/#/entries/new', class: 'btn btn-default'} Add Entry
   Entries
+%form{name: 'filter_entries_form', class: 'form-inline', 'ng-submit' => 'filter_entries()'}
+  %input{name: 'from', type: 'text', class: 'form-control', placeholder: 'From', 'ng-model' => 'filter_form.from'}
+  %input{name: 'to', type: 'text', class: 'form-control', placeholder: 'To', 'ng-model' => 'filter_form.to'}
+  %input{type: 'submit', value: 'Filter', class: 'btn btn-default'}
 .panel.panel-default
-  %table.table.table-hover
+  .panel-body.text-center{'ng-show' => 'entries.length == 0'}
+    No entries
+  %table.table.table-hover{'ng-show' => 'entries.length > 0'}
     %thead
       %tr
         %th Date
         %th Time
         %th Note
-        %th Actions
+        %th
     %tbody
-      %tr{'ng-repeat' => 'entry in entries'}
+      %tr{'ng-repeat' => 'entry in entries', 'ng-controller' => 'EntriesShowController', 'ng-class' => "{'text-success': entry.completed, 'text-danger': entry.completed == false}"}
         %td {{ entry.date | date }}
         %td {{ entry.hours | number:2  }} hours
         %td {{ entry.note }}
-        %td
+        %td.text-right
+          %a{'ng-href': "/#/entries/{{entry._id}}/edit", class: 'btn-icon'}
+            %span.glyphicon.glyphicon-pencil
+          %a{href: '', 'ng-click': "destroy('{{entry._id}}')", class: 'btn-icon'}
+            %span.glyphicon.glyphicon-trash

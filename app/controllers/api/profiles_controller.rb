@@ -14,6 +14,6 @@ class Api::ProfilesController < Api::BaseController
 
   private
   def profile_params
-    params.fetch(:profile, {}).permit(:preferred_working_hours_per_day)
+    params.fetch(:profile, {}).permit(:email, :preferred_working_hours_per_day)
   end
 end

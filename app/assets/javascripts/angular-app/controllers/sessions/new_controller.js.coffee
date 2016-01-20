@@ -1,4 +1,5 @@
 Toptal.controller 'SessionsNewController', ['$scope', '$location', 'Session', ($scope, $location, Session) ->
+  $scope.ready = true
   $scope.session = {}
 
   $scope.sign_in = ->

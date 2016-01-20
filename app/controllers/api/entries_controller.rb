@@ -1,6 +1,13 @@
 class Api::EntriesController < Api::BaseController
   def index
-    render json: entries_scope
+    scope = entries_scope
+    scope = scope.gte(date: params[:from]) if params[:from].present?
+    scope = scope.lte(date: params[:to]) if params[:to].present?
+    render json: scope.order(:date.desc)
+  end
+
+  def show
+    render json: entries_scope.find(params.require(:id))
   end
 
   def create

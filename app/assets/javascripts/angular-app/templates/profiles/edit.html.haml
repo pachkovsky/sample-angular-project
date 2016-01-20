@@ -1,0 +1,13 @@
+%h1.page-header Profile settings
+.row
+  .col-sm-5
+    %form{name: "edit_profile_form", novalidate: true, 'ng-submit' => 'save()'}
+      .form-group{'ng-class' => "{'has-error': errors.email}"}
+        %label{name: 'email', class: 'control-label'} Email
+        %input{type: 'email', name: 'email', 'ng-model': 'profile.email', class: 'form-control', 'ng-required' => 'true'}
+        .help-block.text-danger{'ng-show' => 'errors.email'} {{ errors.email.join(', ') }}
+      .form-group{'ng-class' => "{'has-error': errors.preferred_working_hours_per_day}"}
+        %label{name: 'preferred_working_hours_per_day', class: 'control-label'} Preferred working hours per day
+        %input{type: 'number', name: 'preferred_working_hours_per_day', 'ng-model': 'profile.preferred_working_hours_per_day', class: 'form-control', 'step': 0.01}
+        .help-block.text-danger{'ng-show' => 'errors.preferred_working_hours_per_day'} {{ errors.preferred_working_hours_per_day.join(', ') }}
+      %input{type: 'submit', value: 'Save', class: 'btn btn-primary'}

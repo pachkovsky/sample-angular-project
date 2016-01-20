@@ -1,0 +1,18 @@
+%h1.page-header Add Entry
+.row
+  .col-sm-5
+    %form{name: "new_entry_form", novalidate: true, 'ng-submit' => 'save()'}
+      .form-group{'ng-class' => "{'has-error': errors.date}"}
+        %label{name: 'date', class: 'control-label'} Date
+        %input{type: 'date', name: 'date', 'ng-model': 'entry.date', class: 'form-control', 'ng-required' => 'true'}
+        .help-block.text-danger{'ng-show' => 'errors.date'} {{ errors.date.join(', ') }}
+      .form-group{'ng-class' => "{'has-error': errors.hours}"}
+        %label{name: 'hours', class: 'control-label'} Hours
+        %input{type: 'number', name: 'hours', 'ng-model': 'entry.hours', class: 'form-control', 'ng-required' => 'true', 'step': 0.01}
+        .help-block.text-danger{'ng-show' => 'errors.hours'} {{ errors.hours.join(', ') }}
+      .form-group{'ng-class' => "{'has-error': errors.note}"}
+        %label{name: 'note', class: 'control-label'} Note
+        %textarea{name: 'note', 'ng-model': 'entry.note', class: 'form-control', 'ng-required' => 'true'}
+        .help-block.text-danger{'ng-show' => 'errors.note'} {{ errors.note.join(', ') }}
+      %input{type: 'submit', value: 'Save', class: 'btn btn-primary'}
+      %a{href: '/#/', class: 'btn btn-default'} Cancel
