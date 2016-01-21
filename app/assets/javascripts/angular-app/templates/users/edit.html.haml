@@ -10,13 +10,13 @@
         %label{name: 'role', class: 'control-label'} Role
         %select{name: 'role', 'ng-model': 'user.role', class: 'form-control', 'ng-options' => 'option.value as option.label for option in role_options'}
         .help-block.text-danger{'ng-show' => 'errors.role'} {{ errors.role.join(', ') }}
+      .form-group{'ng-class' => "{'has-error': errors.managed_user_ids}", 'ng-show' => "current_user.role == 'admin' && user.role == 'manager'"}
+        %label{name: 'managed_user_ids', class: 'control-label'} Managed Users
+        %selectize{'ng-model': 'user.managed_user_ids', 'options' => 'users', config: "{valueField: 'id', labelField: 'email'}"}
+        .help-block.text-danger{'ng-show' => 'errors.managed_user_ids'} {{ errors.managed_user_ids.join(', ') }}
       .form-group{'ng-class' => "{'has-error': errors.preferred_working_hours_per_day}"}
         %label{name: 'preferred_working_hours_per_day', class: 'control-label'} Preferred working hours per day
         %input{type: 'number', name: 'preferred_working_hours_per_day', 'ng-model': 'user.preferred_working_hours_per_day', class: 'form-control', 'step': 0.01}
         .help-block.text-danger{'ng-show' => 'errors.preferred_working_hours_per_day'} {{ errors.preferred_working_hours_per_day.join(', ') }}
-      .form-group{'ng-class' => "{'has-error': errors.password}"}
-        %label{name: 'password', class: 'control-label'} Password
-        %input{type: 'password', name: 'password', 'ng-model': 'user.password', class: 'form-control'}
-        .help-block.text-danger{'ng-show' => 'errors.password'} {{ errors.password.join(', ') }}
-      %input{type: 'submit', value: 'Save', class: 'btn btn-primary'}
-      %a{href: '/#/users', class: 'btn btn-default'} Cancel
+      %input{type: 'submit', value: 'Save', class: 'btn btn-primary', 'ng-disabled' => 'disabled()'}
+      %a{href: '/#/users', class: 'btn btn-default', 'ng-disabled' => 'busy'} Cancel

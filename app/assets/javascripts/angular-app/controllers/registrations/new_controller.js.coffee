@@ -2,6 +2,7 @@ Toptal.controller 'RegistrationsNewController', ['$scope', '$location', 'Registr
   $scope.registration = {}
 
   $scope.sign_up = ->
+    $scope.busy = true
     Registration.save registration: $scope.registration, (data) ->
       Session.save session: $scope.registration, (data) ->
         localStorage.setItem('token', data.token)
@@ -9,4 +10,5 @@ Toptal.controller 'RegistrationsNewController', ['$scope', '$location', 'Registr
         $location.path('/')
     , (response) ->
       $scope.errors = response.data.errors
+      $scope.busy = false
 ]

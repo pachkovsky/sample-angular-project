@@ -1,4 +1,4 @@
-Toptal.controller 'ApplicationController', ['$scope', '$location', 'Profile', 'Session', ($scope, $location, Profile, Session) ->
+Toptal.controller 'ApplicationController', ['$scope', '$location', '$rootScope', 'Profile', 'Session', ($scope, $location, $rootScope, Profile, Session) ->
   $scope.current_user = localStorage.getItem('current_user')
   $scope.role_options = [{label: 'Regular', value: 'regular'}, {label: 'Manager', value: 'manager'}, {label: 'Admin', value: 'admin'}]
 

@@ -50,7 +50,7 @@ class Api::UsersController < Api::BaseController
 
   def user_params
     if current_user.admin?
-      params.fetch(:user, {}).permit(:email, :password, :role, :password_confirmation, :managed_user_ids, :preferred_working_hours_per_day)
+      params.fetch(:user, {}).permit(:email, :password, :role, :password_confirmation, :preferred_working_hours_per_day, managed_user_ids: [])
     elsif current_user.manager?
       params.fetch(:user, {}).permit(:email, :password, :password_confirmation, :preferred_working_hours_per_day)
     end

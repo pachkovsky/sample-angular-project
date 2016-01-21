@@ -10,4 +10,4 @@
         %label{name: 'preferred_working_hours_per_day', class: 'control-label'} Preferred working hours per day
         %input{type: 'number', name: 'preferred_working_hours_per_day', 'ng-model': 'profile.preferred_working_hours_per_day', class: 'form-control', 'step': 0.01}
         .help-block.text-danger{'ng-show' => 'errors.preferred_working_hours_per_day'} {{ errors.preferred_working_hours_per_day.join(', ') }}
-      %input{type: 'submit', value: 'Save', class: 'btn btn-primary'}
+      %input{type: 'submit', value: 'Save', class: 'btn btn-primary', 'ng-disabled' => 'disabled()'}

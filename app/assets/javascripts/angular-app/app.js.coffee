@@ -2,6 +2,7 @@
   [
     'ngResource',
     'ngRoute',
+    'selectize'
   ]
 
 Toptal.factory 'AuthInterceptor', ['$q', '$location', ($q, $location) ->

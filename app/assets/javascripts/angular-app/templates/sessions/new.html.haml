@@ -1,6 +1,6 @@
 %h1.auth-header.text-center Toptal
 .row
-  .col-sm-4.col-sm-offset-4
+  .col-md-4.col-md-offset-4.col-sm-6.col-sm-offset-3
     .panel.panel-default
       .panel-heading Sign in
       .panel-body
@@ -12,6 +12,6 @@
           .form-group
             %label{name: 'password'} Password
             %input{type: 'password', name: 'password', 'ng-model': 'session.password', class: 'form-control', 'ng-required' => 'true'}
-          %input{type: 'submit', value: 'Sign in', class: 'btn btn-primary', 'ng-click' => 'sign_in()'}
+          %input{type: 'submit', value: 'Sign in', class: 'btn btn-primary', 'ng-click' => 'sign_in()', 'ng-disabled' => 'busy'}
     .text-center
       %a{href: '/#/registrations/new'} Sign up

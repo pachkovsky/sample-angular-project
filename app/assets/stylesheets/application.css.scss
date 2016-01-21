@@ -1,5 +1,7 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+@import 'bootstrap-datepicker3';
+@import 'selectize.bootstrap3';
 
 body {
   padding-top: 40px;
@@ -9,7 +11,7 @@ body {
   vertical-align: top;
 }
 
-.panel > .panel-body.ng-hide + .table {
+.panel > .panel-body.ng-hide + .table, .panel > .panel-body.ng-hide + .table-responsive, .table-responsive.ng-hide  {
   border-top: none;
 }
 
@@ -30,5 +32,5 @@ a.btn-icon {
 
 .auth-header {
   margin-top: 0;
-  margin-bottom: 25px;
+  margin-bottom: 40px;
 }

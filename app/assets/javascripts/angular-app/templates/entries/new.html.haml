@@ -8,7 +8,7 @@
         .help-block.text-danger{'ng-show' => 'errors.user_id'} {{ errors.user_id.join(', ') }}
       .form-group{'ng-class' => "{'has-error': errors.date}"}
         %label{name: 'date', class: 'control-label'} Date
-        %input{type: 'date', name: 'date', 'ng-model': 'entry.date', class: 'form-control', 'ng-required' => 'true'}
+        %input{type: 'text', name: 'date', 'ng-model': 'entry.date', class: 'form-control datepicker', 'ng-required' => 'true'}
         .help-block.text-danger{'ng-show' => 'errors.date'} {{ errors.date.join(', ') }}
       .form-group{'ng-class' => "{'has-error': errors.hours}"}
         %label{name: 'hours', class: 'control-label'} Hours
@@ -18,5 +18,7 @@
         %label{name: 'note', class: 'control-label'} Note
         %textarea{name: 'note', 'ng-model': 'entry.note', class: 'form-control', 'ng-required' => 'true'}
         .help-block.text-danger{'ng-show' => 'errors.note'} {{ errors.note.join(', ') }}
-      %input{type: 'submit', value: 'Save', class: 'btn btn-primary'}
-      %a{href: '/#/', class: 'btn btn-default'} Cancel
+      %input{type: 'submit', value: 'Save', class: 'btn btn-primary', 'ng-disabled' => 'disabled()'}
+      %a{href: '/#/', class: 'btn btn-default', 'ng-disabled' => 'busy'} Cancel
+:javascript
+  initDatepicker()

@@ -5,20 +5,22 @@
 .panel.panel-default
   .panel-body.text-center{'ng-hide' => 'users.length > 0'}
     No users
-  %table.table.table-hover{'ng-show' => 'users.length > 0'}
-    %thead
-      %tr
-        %th Email
-        %th Role
-        %th.text-center Preferred working hours per day
-        %th
-    %tbody
-      %tr{'ng-repeat' => 'user in users', 'ng-controller' => 'UsersShowController'}
-        %td {{ user.email }}
-        %td {{ user.role  }}
-        %td.text-center {{ user.preferred_working_hours_per_day  }}
-        %td.text-right
-          %a{'ng-href': "/#/users/{{user.id}}/edit", class: 'btn-icon'}
-            %span.glyphicon.glyphicon-pencil
-          %a{href: '', 'ng-click': "destroy('{{user.id}}')", class: 'btn-icon'}
-            %span.glyphicon.glyphicon-trash
+  .table-responsive{'ng-show' => 'users.length > 0'}
+    %table.table.table-hover
+      %thead
+        %tr
+          %th Email
+          %th Role
+          %th.text-center Preferred working hours per day
+          %th
+      %tbody
+        %tr{'ng-repeat' => 'user in users', 'ng-controller' => 'UsersShowController'}
+          %td
+            %a{href: '/#/users/{{user.id}}/edit'} {{ user.email }}
+          %td {{ user.role  }}
+          %td.text-center {{ user.preferred_working_hours_per_day  }}
+          %td.text-right
+            %a{'ng-href': "/#/users/{{user.id}}/edit", class: 'btn-icon'}
+              %span.glyphicon.glyphicon-pencil
+            %a{href: '', 'ng-click': "destroy('{{user.id}}')", class: 'btn-icon'}
+              %span.glyphicon.glyphicon-trash

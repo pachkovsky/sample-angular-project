@@ -12,11 +12,27 @@
 //
 //= require jquery
 //= require bootstrap
+//= require bootstrap-datepicker
+//= require selectize
 //= require angular
 //= require angular-route
 //= require angular-resource
+//= require angular-selectize
 //= require angular-app/app
-//= require_tree ./angular-app/factories
 //= require_tree ./angular-app/controllers
 //= require_tree ./angular-app/resources
 //= require_tree ./angular-app/routes
+
+var initDatepicker = function(){
+  $('.datepicker').datepicker({
+    format: "M d, yyyy",
+    autoclose: true,
+    clearBtn: true
+  });
+}
+
+$(document).ready(function(){
+  $('nav.navbar-collapse a[ng-href]').on('click', function(){
+    $('nav.navbar-collapse').collapse('hide')
+  })
+})
