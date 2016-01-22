@@ -12,7 +12,7 @@
               %ul
                 %li
                   Total time:
-                  = entries.sum(&:hours)
+                  = number_with_precision(entries.sum(&:hours), precision: 2, strip_insignificant_zeros: true) + 'h'
                 %li
                   Notes:
                   %ul
