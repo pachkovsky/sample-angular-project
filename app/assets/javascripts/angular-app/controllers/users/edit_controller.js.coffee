@@ -1,9 +1,10 @@
-Toptal.controller 'UsersEditController', ['$scope', '$location', '$routeParams', 'User', ($scope, $location, $routeParams, User) ->
+Toptal.controller 'UsersEditController', ['$scope', '$location', '$routeParams', '$filter', 'User', ($scope, $location, $routeParams, $filter, User) ->
   $scope.load = ->
     User.get id: $routeParams.id, (data) ->
       $scope.user = data
-    User.query (data) ->
-      $scope.users = data
+      User.query (data) ->
+        $scope.users = $filter('filter') data, (data) ->
+          data.id != $scope.user.id
 
   $scope.save = ->
     $scope.busy = true

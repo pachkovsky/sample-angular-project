@@ -1,4 +1,5 @@
 Toptal.controller 'RegistrationsNewController', ['$scope', '$location', 'Registration', 'Session', ($scope, $location, Registration, Session) ->
+  $scope.ready = true
   $scope.registration = {}
 
   $scope.sign_up = ->

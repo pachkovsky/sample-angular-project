@@ -32,4 +32,4 @@
           %ul.nav.navbar-nav.navbar-right{'ng-hide' => 'current_user'}
             %li= link_to 'Sign in', '/#/sessions/new'
     .container
-      %ng-view
+      %ng-view{'ng-show' => 'current_user || ready'}

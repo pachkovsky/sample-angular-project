@@ -2,7 +2,7 @@
   .pull-right
     %a{href: '/#/users/new', class: 'btn btn-default'} Add User
   Users
-.panel.panel-default
+.panel.panel-default{'ng-show' => 'users'}
   .panel-body.text-center{'ng-hide' => 'users.length > 0'}
     No users
   .table-responsive{'ng-show' => 'users.length > 0'}
