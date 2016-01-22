@@ -1,5 +1,7 @@
 Toptal.controller 'ProfilesEditController', ['$scope', '$location', 'Profile', ($scope, $location, Profile) ->
-  $scope.profile = angular.copy($scope.current_user)
+  $scope.load = ->
+    Profile.get (data) ->
+      $scope.profile = data
 
   $scope.save = ->
     $scope.busy = true
@@ -12,4 +14,6 @@ Toptal.controller 'ProfilesEditController', ['$scope', '$location', 'Profile', (
 
   $scope.disabled = ->
     !$scope.edit_profile_form.$valid || $scope.busy
+
+  $scope.load()
 ]
