@@ -4,7 +4,7 @@ machine:
 
 dependencies:
   pre:
-    - `aws ecr get-login --region us-east-1`
+    - "`aws ecr get-login --region us-east-1`"
 
 test:
   post:
