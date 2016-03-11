@@ -2,6 +2,12 @@ machine:
   services:
     - docker
 
+dependencies:
+  pre:
+    - aws ecr get-login --region us-east-1
+
 test:
   post:
-    - docker build -t sap .
+    - docker build -t sap:$CIRCLE_BRANCH .
+    - docker tag sap:$CIRCLE_BRANCH 598396839027.dkr.ecr.us-east-1.amazonaws.com/sap:$CIRCLE_BRANCH
+    - docker push 598396839027.dkr.ecr.us-east-1.amazonaws.com/sap:$CIRCLE_BRANCH
