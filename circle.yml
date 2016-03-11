@@ -2,11 +2,6 @@ machine:
   services:
     - docker
 
-dependencies:
-  override:
-    - docker build -t circleci/elasticsearch .
-
 test:
-  override:
-    - rspec
+  post:
     - docker build -t sap .
